@@ -36,7 +36,7 @@
     //#define BI
     //#define TRI
     //#define QUADP
-    //#define QUADX
+    #define QUADX
     //#define Y4
     //#define Y6
     //#define HEX6
@@ -60,11 +60,11 @@
     //#define MINTHROTTLE 1120 // for Super Simple ESCs 10A
     //#define MINTHROTTLE 1064 // special ESC (simonk)
     //#define MINTHROTTLE 1050 // for brushed ESCs like ladybird
-    #define MINTHROTTLE 1150 // (*) (**)
+    #define MINTHROTTLE 1080 // (*) (**)
 
   /****************************    Motor maxthrottle    *******************************/
     /* this is the maximum value for the ESCs at full power, this value can be increased up to 2000 */
-    #define MAXTHROTTLE 1850
+    #define MAXTHROTTLE 1920
 
   /****************************    Mincommand          *******************************/
     /* this is the value for the ESCs when they are not armed
@@ -104,7 +104,6 @@
       //#define QUADRINO        // full FC board 9DOF+baro board from witespy  with BMP085 baro     <- confirmed by Alex
       //#define QUADRINO_ZOOM   // full FC board 9DOF+baro board from witespy  second edition
       //#define QUADRINO_ZOOM_MS// full FC board 9DOF+baro board from witespy  second edition       <- confirmed by Alex
-      //#define QUADRINO_NANO   // full FC board 9DOF+baro board+GPS from Lynxmotion / RobotShop    <- confirmed by Alex
       //#define ALLINONE        // full FC board or standalone 9DOF+baro board from CSG_EU
       //#define AEROQUADSHIELDv2
       //#define ATAVRSBIN1      // Atmel 9DOF (Contribution by EOSBandi). requires 3.3V power.
@@ -134,7 +133,7 @@
       //#define GY_85           // Chinese 9 DOF with  ITG3205 ADXL345 HMC5883L LLC
       //#define GY_86           // Chinese 10 DOF with  MPU6050 HMC5883L MS5611, LLC
       //#define GY_88 // Chinese 10 DOF with MPU6050 HMC5883L BMP085, LLC
-      //#define GY_521          // Chinese 6  DOF with  MPU6050, LLC
+      #define GY_521          // Chinese 6  DOF with  MPU6050, LLC
       //#define INNOVWORKS_10DOF // with ITG3200, BMA180, HMC5883, BMP085 available here http://www.diymulticopter.com
       //#define INNOVWORKS_6DOF // with ITG3200, BMA180 available here http://www.diymulticopter.com
       //#define MultiWiiMega    // MEGA + MPU6050+HMC5883L+MS5611 available here http://www.diymulticopter.com
@@ -230,13 +229,13 @@
     #define YAW_DIRECTION 1
     //#define YAW_DIRECTION -1 // if you want to reverse the yaw correction direction
 
-    #define ONLYARMWHENFLAT //prevent the copter from arming when the copter is tilted
+    //#define ONLYARMWHENFLAT //prevent the copter from arming when the copter is tilted
 
    /********************************    ARM/DISARM    *********************************/
    /* optionally disable stick combinations to arm/disarm the motors.
      * In most cases one of the two options to arm/disarm via TX stick is sufficient */
-    #define ALLOW_ARM_DISARM_VIA_TX_YAW
-    //#define ALLOW_ARM_DISARM_VIA_TX_ROLL
+    //#define ALLOW_ARM_DISARM_VIA_TX_YAW
+    #define ALLOW_ARM_DISARM_VIA_TX_ROLL
 
     /********************************    SERVOS      *********************************/
     /* info on which servos connect where and how to setup can be found here
@@ -288,8 +287,8 @@
     //#define GOVERNOR_D 4     // (*) decay timing. Higher value -> takes longer to return throttle to normal. Must be >=1;
 
     /* tail precomp from collective */
-    #define YAW_COLL_PRECOMP 10           // (*) proportional factor in 0.1. Higher value -> higher precomp effect. value of 10 equals no/neutral effect
-    #define YAW_COLL_PRECOMP_DEADBAND 120 // (*) deadband for collective pitch input signal around 0-pitch input value
+    //#define YAW_COLL_PRECOMP 15           // (*) proportional factor in 0.1. Higher value -> higher precomp effect. value of 10 equals no/neutral effect
+    //#define YAW_COLL_PRECOMP_DEADBAND 120 // (*) deadband for collective pitch input signal around 0-pitch input value
 
     //#define VOLTAGEDROP_COMPENSATION // voltage impact correction
 
@@ -365,7 +364,8 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
       //#define SERIAL_SUM_PPM         ROLL,PITCH,THROTTLE,YAW,AUX1,AUX2,AUX3,AUX4,8,9,10,11 //For Robe/Hitec/Futaba
       //#define SERIAL_SUM_PPM         ROLL,PITCH,YAW,THROTTLE,AUX1,AUX2,AUX3,AUX4,8,9,10,11 //For Multiplex
       //#define SERIAL_SUM_PPM         PITCH,ROLL,THROTTLE,YAW,AUX1,AUX2,AUX3,AUX4,8,9,10,11 //For some Hitec/Sanwa/Others
-      //#define SERIAL_SUM_PPM         THROTTLE,YAW,ROLL,PITCH,AUX1,AUX2,AUX3,AUX4,8,9,10,11 //Modelcraft
+      #define SERIAL_SUM_PPM           THROTTLE,YAW,PITCH,ROLL,AUX1,AUX2,AUX3,AUX4,8,9,10,11
+
 
       // Uncommenting following line allow to connect PPM_SUM receiver to standard THROTTLE PIN on MEGA boards (eg. A8 in CRIUS AIO)
       //#define PPM_ON_THROTTLE
@@ -403,6 +403,9 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
     /* Graupner Hott HD */
     //#define SUMD PITCH,YAW,THROTTLE,ROLL,AUX1,AUX2,AUX3,AUX4
     //#define RX_SERIAL_PORT 1
+
+    /******************************* nRF24L01 ****************************************/
+    #define NRF24_RX
 
 /*************************************************************************************************/
 /*****************                                                                 ***************/
@@ -522,7 +525,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
       //#define GYRO_LPF_256HZ     // This is the default setting, no need to uncomment, just for reference
       //#define GYRO_LPF_188HZ
       //#define GYRO_LPF_98HZ
-      //#define GYRO_LPF_42HZ
+      #define GYRO_LPF_42HZ
       //#define GYRO_LPF_20HZ
       //#define GYRO_LPF_10HZ
       //#define GYRO_LPF_5HZ       // Use this only in extreme cases, rather change motors and/or props -- setting not available on ITG3200
@@ -685,7 +688,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
     //#define MTK_BINARY16
     //#define MTK_BINARY19
     //#define INIT_MTK_GPS        // initialize MTK GPS for using selected speed, 5Hz update rate and GGA & RMC sentence or binary settings
-    //#define VENUS8
+
 
     /* I2C GPS device made with an independant arduino + GPS device
        including some navigation functions
@@ -789,7 +792,6 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
       //#define LCD_TTY         // SERIAL LCD: useful to tweak parameters over cable with arduino IDE 'serial monitor'
       //#define LCD_ETPP        // I2C LCD: Eagle Tree Power Panel LCD, which is i2c (not serial)
       //#define LCD_LCD03       // I2C LCD: LCD03, which is i2c
-      //#define LCD_LCD03S      // SERIAL LCD: LCD03 whit serial 9600 baud comunication enabled.
       //#define OLED_I2C_128x64 // I2C LCD: OLED http://www.multiwii.com/forum/viewtopic.php?f=7&t=1350
       //#define OLED_DIGOLE     // I2C OLED from http://www.digole.com/index.php?productID=550
 
@@ -876,33 +878,6 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
     //#define RX_RSSI
     //#define RX_RSSI_PIN A3
     //#define RX_RSSI_CHAN 8   //RSSI injection on selected channel (for PPM, Olrs, SBUS, etc.) (Starts at 0)
-
-  /********************************************************************/
-  /****                             TELEMETRY                      ****/
-  /********************************************************************/
-    // select one of the two protocols depending on your receiver
-    //#define FRSKY_TELEMETRY           // used for FRSKY twoway receivers with telemetry (D-series like D8R-II or D8R-XP) 
-                                      // VBAT, Baro, MAG, GPS and POWERMETER are helpful
-                                      // VBAT_CELLS is optional for a forth screen on the display FLD-02
-    //#define SPORT_TELEMETRY           // for FRSKY twoway receivers with S.PORT telemetry (S-series like X4R/X6R/X8R), not implemented yet - TO BE DONE
-
-    // FRSKY common entries - valid for both protocols
-    #define TELEMETRY_SERIAL 3        // change if required
-
-    // FRSKY standard telemetry specific devices
-    #define FRSKY_FLD02               // send only data specific for the FRSKY display FLD-02
-    //#define OPENTX                    // send OpenTX specific data
-
-    // FRSKY standard telemetry specific selections
-    //#define COORDFORMAT_DECIMALMINUTES // uncomment to get the format DD°MM.mmmm for the coordinates - comment out to get the format DD.dddddd° for the coordinates 
-    //#define KILOMETER_HOUR            // send speed in kilometers per hour instead of knots (default) - requested by OPENTX
-    #define TELEMETRY_ALT_BARO        // send BARO based altitude, calibrated to 0 when arming, recommended if BARO available
-    //#define TELEMETRY_ALT_GPS         // send GPS based altitude (altitude above see level), for FLD-02 don't use together with TELEMETRY_ALT_BARO
-    #define TELEMETRY_COURSE_MAG      // send MAG based course/heading, recommended if MAG available, but FLD-02 does not display
-    //#define TELEMETRY_COURSE_GPS      // send GPS based course/heading, don't use together with TELEMETRY_COURSE_MAG, FLD-02 does not display
-
-    // S.PORT specific entries
-    #define FRSKY_SPORT_A2_MAX 124    // A2 voltage is represented by a value in the range 0-255. A value of 16 results in 1.6V, 124 is 12.4V, etc
 
   /********************************************************************/
   /****                             Buzzer                         ****/
@@ -1019,8 +994,6 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
 /****************  SECTION  7 - TUNING & DEVELOPER                                  **************/
 /*****************                                                                 ***************/
 /*************************************************************************************************/
-
-  #define VBAT_PRESCALER 16 // set this to 8 if vbatscale would exceed 255
 
   /**************************************************************************************/
   /********   special ESC with extended range [0-2000] microseconds  ********************/
